@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 
-const insertionHandler = () =>{
+const insertionHandler = (id) =>{
     const data = {
+        "id": id,
         "username": "huzaifa",
         "msisdn": "3180841063",
         "cnic": "8210122141271",
@@ -13,11 +14,7 @@ const insertionHandler = () =>{
         "param4": null
       }
     try {
-        const response = axios.post('http://localhost:3001/testrabbit',data,{
-            headers: {
-                "Content-Type":'application/json'
-            }
-        })
+        const response = axios.post('http://localhost:3001/testrabbit',data)
         console.log("Response: ", response.data)
     } catch (error) {
         console.log("Something Went Wrong!!", error)
@@ -48,6 +45,6 @@ const uniqueRequestHanlder = async() =>{
 }
 
 for (let i = 0; i < 10; i++){
-    insertionHandler();
+    insertionHandler(i+1);
     // uniqueRequestHanlder();
 }

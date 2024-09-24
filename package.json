@@ -18,7 +18,8 @@
     "kafkajs": "^2.2.4",
     "mysql2": "^3.11.3",
     "nodemon": "^3.1.7",
-    "test-cmpa-dos": "file:"
+    "test-cmpa-dos": "file:",
+    "uuid": "^10.0.0"
   },
   "type": "module"
 }
