@@ -35,9 +35,21 @@ app.post('/testrabbit', async(req, res) => {
     if (!username || !msisdn || !cnic || !transactionId) {
         return res.status(400).json({ error: "USERNAME, MSISDN, CNIC, and TRANSACTIONID are required" });
     }
-    await sendMessage(req.body)
-    res.status(200).send("Request Processed with Transaction Id: ", transactionId)
 
+    // Add replyTo to the request data
+    const requestData = { ...req.body, replyTo: responseQueue };
+
+    await sendMessage(requestData);
+    // await channel.consume(responseQueue, (responseMsg) => {
+    //     const response = JSON.parse(responseMsg.content.toString());
+    //     if (responseMsg.properties.correlationId === transactionId) {
+    //         console.log("Here")
+    //         // Send the response back to the client
+    //         res.status(200).json(JSON.parse(responseMsg.content.toString()));
+    //         channel.ack(responseMsg); // Acknowledge the response message
+    //     }
+    // }, { noAck: false });
+    // res.status(200).send("Already Exists in DB")
 });
 
 app.listen(port, async () => {

@@ -60,10 +60,10 @@ async function recvMessage() {
                                 }
 
                                 // // Send response back to the producer
-                                // const responseMessage = { status: 'success', transactionId };
-                                // channel.sendToQueue(msg.properties.replyTo, Buffer.from(JSON.stringify(responseMessage)), {
-                                //     correlationId: msg.properties.correlationId,
-                                // });
+                                // // const responseMessage = { status: 'success', transactionId };
+                                // // channel.sendToQueue(msg.properties.replyTo, Buffer.from(JSON.stringify(responseMessage)), {
+                                // //     correlationId: msg.properties.correlationId,
+                                // // });
                                 channel.ack(msg);
                             });
                         });
